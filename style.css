@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    padding-bottom: 80px;
+}
+
+.hero-section {
+    height: 50vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('https://images.unsplash.com/photo-1574129624545-0968600c85c2?w=1200');
+    background-size: cover;
+    background-position: center;
+}
+
+.menu-item-card {
+    border-radius: 12px;
+    height: 130px;
+    transition: 0.3s;
+}
+
+.menu-item-card:hover {
+    transform: scale(1.02);
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
