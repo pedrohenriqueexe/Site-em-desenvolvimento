@@ -2,13 +2,13 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    background-color: #fff5f2;
+    background-color: #c9c9c9;
     padding-bottom: 90px;
 }
 
 /* NAVBAR */
 .navbar{
-    background: linear-gradient(90deg,#1c1c1c,#2b2b2b);
+    background: linear-gradient(90deg,#ff0000,#ff0000);
 }
 
 .navbar-brand{
@@ -64,13 +64,13 @@ h2,h3{
 
 /* BOTÕES */
 .btn-danger{
-    background:#e63946;
+    background:#ff0000;
     border:none;
 }
 
 .btn-danger:hover{
-    background:#c1121f;
-}
+    background:#ff0000;
+}s
 
 href="https://wa.me/5583999999999?text=Olá%20quero%20fazer%20um%20pedido"
 .fixed-bottom{
