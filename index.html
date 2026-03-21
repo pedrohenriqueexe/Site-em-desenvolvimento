@@ -4,65 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizzaria Do Ratinho | O Sabor da Massa</title>
+    
+    <link rel="icon" type="image/png" href="./logo.png">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="verificarStatus()">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#" onclick="showSection('home')">
-                🍕 PIZZA<span class="text-danger">DO RATINHO</span>
+            <a class="navbar-brand-logo" href="#" onclick="showSection('home')">
+                <img src="./logo.png" alt="Logo" class="logo-nav">
+                PIZZA<span class="brand-destaque">DO RATINHO</span>
             </a>
+            <div id="status-loja" class="ms-2"></div> 
             <div class="ms-auto">
                 <button class="btn btn-sm btn-outline-light me-2" onclick="showSection('home')">Início</button>
-                <button class="btn btn-sm btn-danger" onclick="showSection('cardapio')">Ver Cardápio</button>
+                <button class="btn btn-sm btn-danger px-3" onclick="showSection('cardapio')">Cardápio</button>
             </div>
         </div>
     </nav>
 
-    <main id="home-section">
-        <header class="hero-section d-flex align-items-center justify-content-center">
-            <div class="container text-center text-white">
-                <h1 class="display-3 fw-bold">A melhor pizza da cidade</h1>
-                <p class="lead mb-4">Ingredientes frescos e massa artesanal todos os dias.</p>
-                <button class="btn btn-danger btn-lg px-5" onclick="showSection('cardapio')">PEÇA AGORA</button>
+    <div id="home-section">
+        <header class="hero-section text-center text-white">
+            <div class="container">
+                <div class="mb-4">
+                    <img src="./logo.png" alt="Logo Ratinho" class="logo-hero">
+                </div>
+                <h1 class="display-4 fw-bold text-uppercase">Pizzaria <span class="text-danger">Do Ratinho</span></h1>
+                <p class="lead mb-4">Massa artesanal e ingredientes selecionados.</p>
+                <button class="btn btn-danger btn-lg px-5 shadow" onclick="showSection('cardapio')">VER CARDÁPIO</button>
             </div>
         </header>
 
         <section class="container py-5">
-            <h2 class="text-center mb-5 fw-bold">🔥 Destaques da Semana</h2>
-            <div class="row g-4">
+            <h2 class="text-center mb-5 fw-bold">🔥 Promoções em Destaque</h2>
+            <div class="row g-4 d-flex align-items-stretch">
                 <div class="col-md-6">
-                    <div class="card h-100 shadow-sm border-0 highlight-card">
-                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600" class="card-img-top" alt="Pizza">
-                        <div class="card-body text-center">
-                            <h5 class="fw-bold">Calabresa Especial</h5>
-                            <p class="text-muted">A mais pedida! Molho caseiro, mussarela e cebola roxa.</p>
-                            <span class="fs-4 text-success fw-bold">R$ 45,00</span>
+                    <div class="card h-100 shadow-sm border-0 promo-card">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600" class="card-img-top img-promo" alt="Pizza Calabresa">
+                        <div class="card-body text-center d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="fw-bold mt-2">Calabresa Especial</h5>
+                                <p class="text-muted small">A queridinha da casa com cebola roxa e azeitonas.</p>
+                                <h2 class="text-success fw-bold mb-3">R$ 42,00</h2>
+                            </div>
+                            <button class="btn btn-success btn-lg shadow w-100" onclick="addToCart('Calabresa Especial', 42.00)">Adicionar ao Pedido</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card h-100 shadow-sm border-0 border-top border-danger border-4 highlight-card">
-                        <div class="card-body text-center d-flex flex-column justify-content-center">
-                            <div class="badge bg-danger mb-3 py-2 fs-6">MELHOR PREÇO</div>
-                            <h3 class="fw-bold">Combo Família</h3>
-                            <p class="text-muted fs-5">2 Pizzas G + Refri 2L + Borda Recheada</p>
-                            <h2 class="text-success fw-bold mb-4">R$ 99,90</h2>
-                            <button class="btn btn-danger btn-lg" onclick="showSection('cardapio')">Aproveitar Oferta!</button>
+                    <div class="card h-100 shadow-sm border-0 promo-card border-top border-danger border-4">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600" class="card-img-top img-promo" alt="Combo Família">
+                        <div class="card-body text-center d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="badge bg-danger align-self-center mb-2">O MAIS PEDIDO</div>
+                                <h3 class="fw-bold">Combo Família</h3>
+                                <p class="text-muted small">2 Pizzas G + Refrigerante 2L</p>
+                                <h2 class="text-success fw-bold mb-3">R$ 89,90</h2>
+                            </div>
+                            <button class="btn btn-danger btn-lg shadow w-100" onclick="addToCart('Combo Família', 89.90)">Pedir Agora!</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    </main>
+    </div>
 
-    <main id="cardapio-section" style="display: none;">
-        <div class="bg-light py-3 border-bottom sticky-top shadow-sm" style="top: 56px; z-index: 1020;">
+    <div id="cardapio-section" style="display: none;">
+        <div class="bg-white py-3 border-bottom sticky-top shadow-sm sub-nav">
             <div class="container text-center">
-                <div class="d-flex justify-content-center gap-2 overflow-auto py-2 no-scrollbar">
+                <div class="d-flex justify-content-center gap-2 overflow-auto py-1 no-scrollbar">
                     <a href="#combos" class="btn btn-sm btn-dark rounded-pill px-3">Combos</a>
                     <a href="#salgadas" class="btn btn-sm btn-outline-dark rounded-pill px-3">Salgadas</a>
                     <a href="#doces" class="btn btn-sm btn-outline-dark rounded-pill px-3">Doces</a>
@@ -71,267 +85,229 @@
             </div>
         </div>
 
-        <div class="container py-5">
-            
-            <div id="combos" class="mb-5 pt-4">
-                <h3 class="fw-bold mb-4 border-start border-danger border-4 ps-3">🔥 Combos e Promoções</h3>
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-4"><img src="https://images.unsplash.com/photo-1620052581237-5d36667be337?w=300" class="img-fluid h-100 object-fit-cover"></div>
-                                <div class="col-8"><div class="card-body">
-                                    <h6 class="fw-bold mb-1">Combo Casal</h6>
-                                    <p class="small text-muted mb-2">1 Pizza G + Coca 1.5L</p>
-                                    <span class="fw-bold text-danger">R$ 65,00</span>
-                                </div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-4"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300" class="img-fluid h-100 object-fit-cover"></div>
-                                <div class="col-8"><div class="card-body">
-                                    <h6 class="fw-bold mb-1">Combo Família</h6>
-                                    <p class="small text-muted mb-2">2 Pizzas G + Refri 2L</p>
-                                    <span class="fw-bold text-danger">R$ 89,90</span>
-                                </div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-4"><img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=300" class="img-fluid h-100 object-fit-cover"></div>
-                                <div class="col-8"><div class="card-body">
-                                    <h6 class="fw-bold mb-1">Combo Individual</h6>
-                                    <p class="small text-muted mb-2">1 Pizza P + Lata 350ml</p>
-                                    <span class="fw-bold text-danger">R$ 39,90</span>
-                                </div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-4"><img src="https://images.unsplash.com/photo-1574071318508-1cdbad80ad50?w=300" class="img-fluid h-100 object-fit-cover"></div>
-                                <div class="col-8"><div class="card-body">
-                                    <h6 class="fw-bold mb-1">Super Combo</h6>
-                                    <p class="small text-muted mb-2">3 Pizzas G + Refri 2L</p>
-                                    <span class="fw-bold text-danger">R$ 135,00</span>
-                                </div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="salgadas" class="mb-5">
-                <h3 class="fw-bold mb-4 border-start border-danger border-4 ps-3">🍕 Pizzas Salgadas</h3>
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden border-start border-warning border-4">
-                            <div class="row g-0">
-                                <div class="col-4"><img src="https://edburgpizzaria.lojazap.com/_core/_uploads//2023/07/1424270723kf7b5d6e8b.webp" class="img-fluid h-100 object-fit-cover"></div>
-                                <div class="col-8"><div class="card-body">
-                                    <span class="badge bg-warning text-dark mb-1">MAIS PEDIDA</span>
-                                    <h6 class="fw-bold mb-1">Frango com Catupiry</h6>
-                                    <p class="small text-muted mb-2">Frango desfiado com Catupiry original.</p>
-                                    <span class="fw-bold text-dark">R$ 35,00</span>
-                                </div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden border-start border-warning border-4">
-                            <div class="row g-0">
-                                <div class="col-4"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNjMzB44Qec0VM4BPULlPFJs6vDMw7IrfNuQ&s" class="img-fluid h-100 object-fit-cover"></div>
-                                <div class="col-8"><div class="card-body">
-                                    <span class="badge bg-warning text-dark mb-1">MAIS PEDIDA</span>
-                                    <h6 class="fw-bold mb-1">Calabresa</h6>
-                                    <p class="small text-muted mb-2">Mussarela, Calabresa e cebola.</p>
-                                    <span class="fw-bold text-dark">R$ 42,00</span>
-                                </div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden border-start border-warning border-4">
-                            <div class="row g-0">
-                                <div class="col-4"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTID4GmVjQAtUp3AJ6GzlrwYxvwDC2EPQ6saw&s" class="img-fluid h-100 object-fit-cover"></div>
-                                <div class="col-8"><div class="card-body">
-                                    <span class="badge bg-warning text-dark mb-1">MAIS PEDIDA</span>
-                                    <h6 class="fw-bold mb-1">Carne de sol</h6>
-                                    <p class="small text-muted mb-2">Mussarela, queijo e carne de sol.</p>
-                                    <span class="fw-bold text-dark">R$ 38,00</span>
-                                </div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden border-start border-warning border-4">
-                            <div class="row g-0">
-                                <div class="col-4"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300" class="img-fluid h-100 object-fit-cover"></div>
-                                <div class="col-8"><div class="card-body">
-                                    <span class="badge bg-warning text-dark mb-1">MAIS PEDIDA</span>
-                                    <h6 class="fw-bold mb-1">Portuguesa</h6>
-                                    <p class="small text-muted mb-2">Presunto, ovos, cebola e ervilha.</p>
-                                    <span class="fw-bold text-dark">R$ 45,00</span>
-                                </div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="doces" class="mb-5">
-                <h3 class="fw-bold mb-4 border-start border-danger border-4 ps-3">🍫 Pizzas Doces</h3>
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-4"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqqBiXj9LAfCMYz3Db9xYAkSQA7t0A8bKzaA&s" class="img-fluid h-100 object-fit-cover"></div>
-                                <div class="col-8"><div class="card-body">
-                                    <h6 class="fw-bold mb-1">Dois Amores</h6>
-                                    <p class="small text-muted mb-2">Chocolate preto e branco.</p>
-                                    <span class="fw-bold text-dark">R$ 55,00</span>
-                                </div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-4"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDSj2XSVr3cczrgy1YzwdHBOtx3X33ijQlig&s" class="img-fluid h-100 object-fit-cover"></div>
-                                <div class="col-8"><div class="card-body">
-                                    <h6 class="fw-bold mb-1">Chocolate com morangos</h6>
-                                    <p class="small text-muted mb-2">Chocolate e morangos frescos.</p>
-                                    <span class="fw-bold text-dark">R$ 58,00</span>
-                                </div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-4"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9cJELWK0JVp-oJGl-xyoJWp8LogL_84zSsQ&s" class="img-fluid h-100 object-fit-cover"></div>
-                                <div class="col-8"><div class="card-body">
-                                    <h6 class="fw-bold mb-1">Brigadeiro</h6>
-                                    <p class="small text-muted mb-2">Chocolate com brigadeiro.</p>
-                                    <span class="fw-bold text-dark">R$ 55,00</span>
-                                </div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-4"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuUD5q5ClJ-UX39vdPRpQCNT1d0NCurBykWw&s" class="img-fluid h-100 object-fit-cover"></div>
-                                <div class="col-8"><div class="card-body">
-                                    <h6 class="fw-bold mb-1">Prestigio</h6>
-                                    <p class="small text-muted mb-2">Chocolate e coco ralado.</p>
-                                    <span class="fw-bold text-dark">R$ 50,00</span>
-                                </div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="bebidas" class="mb-5">
-                <h3 class="fw-bold mb-4 border-start border-danger border-4 ps-3">🥤 Bebidas</h3>
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-4">
-                                    <img src="https://saborecia.com.br/wp-content/uploads/2020/06/Design-sem-nome-1.png" class="img-fluid h-100 object-fit-cover" alt="Refrigerante">
-                                </div>
-                                <div class="col-8">
-                                    <div class="card-body">
-                                        <h6 class="fw-bold mb-1">Refrigerante 2L</h6>
-                                        <p class="small text-muted mb-2">Coca-Cola, Guaraná ou Fanta.</p>
-                                        <span class="fw-bold text-dark">R$ 15,00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-4">
-                                    <img src="https://redemix.vteximg.com.br/arquivos/ids/207870-500-500/7891149103102.jpg?v=638350598938700000" class="img-fluid h-100 object-fit-cover" alt="Cerveja">
-                                </div>
-                                <div class="col-8">
-                                    <div class="card-body">
-                                        <h6 class="fw-bold mb-1">Cerveja Lata</h6>
-                                        <p class="small text-muted mb-2">Skol (350ml).</p>
-                                        <span class="fw-bold text-dark">R$ 6,00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-4">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAurOFjU6_mJezEsDfN5463qmKLypXjTo1jQ&s" class="img-fluid h-100 object-fit-cover" alt="Suco">
-                                </div>
-                                <div class="col-8">
-                                    <div class="card-body">
-                                        <h6 class="fw-bold mb-1">Suco Natural 500ml</h6>
-                                        <p class="small text-muted mb-2">Laranja ou Limão.</p>
-                                        <span class="fw-bold text-dark">R$ 10,00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card menu-item-card border-0 shadow-sm overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-4">
-                                    <img src="https://drogariamoderna.vtexassets.com/arquivos/ids/251997-800-auto?v=638151218022670000&width=800&height=auto&aspect=true" class="img-fluid h-100 object-fit-cover" alt="Água">
-                                </div>
-                                <div class="col-8">
-                                    <div class="card-body">
-                                        <h6 class="fw-bold mb-1">Água Mineral</h6>
-                                        <p class="small text-muted mb-2">Com ou sem gás.</p>
-                                        <span class="fw-bold text-dark">R$ 4,00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </main>
-
-    <div class="fixed-bottom bg-white p-3 shadow-lg border-top text-center">
-        <a href="https://wa.me/SEUNUMERO" target="_blank" class="btn btn-success fw-bold px-md-5 w-100 w-md-auto">
-            <i class="fab fa-whatsapp"></i> PEDIR PELO WHATSAPP
-        </a>
+        <div class="container py-5 text-center">
+            <div id="combos" class="mb-5 pt-3"><h3 class="category-header text-uppercase">🔥 Combos Irresistíveis</h3><div class="row g-3" id="lista-combos"></div></div>
+            <div id="salgadas" class="mb-5"><h3 class="category-header text-uppercase">🍕 Pizzas Salgadas</h3><div class="row g-3" id="lista-salgadas"></div></div>
+            <div id="doces" class="mb-5"><h3 class="category-header text-uppercase">🍫 Pizzas Doces</h3><div class="row g-3" id="lista-doces"></div></div>
+            <div id="bebidas" class="mb-5"><h3 class="category-header text-uppercase">🥤 Bebidas Geladas</h3><div class="row g-3" id="lista-bebidas"></div></div>
+        </div>
     </div>
 
+    <footer class="footer-pizzaria bg-dark text-white py-4">
+        <div class="container text-center">
+            <img src="./logo.png" alt="Logo Footer" class="logo-footer mb-2 shadow-sm">
+            <h5 class="fw-bold mb-1">Pizzaria Do Ratinho</h5>
+            
+            <div class="row justify-content-center mb-2">
+                <div class="col-md-4 mb-2">
+                    <h6 class="text-danger fw-bold text-uppercase tiny mb-1">Onde Estamos</h6>
+                    <p class="tiny text-light mb-0">Rua nova N° 15, Ferreiros - PE<br>CEP: 55880-000</p>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-danger fw-bold text-uppercase tiny mb-1">Siga-nos</h6>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/ratinho_delivery02/" target="_blank" class="text-white mx-2 fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/5581989174422" target="_blank" class="text-white mx-2 fs-5"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25 my-3">
+            <p class="tiny text-muted mb-0">© 2026 Pizzaria Do Ratinho - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="fixed-bottom bg-white p-3 shadow-lg border-top">
+        <div class="container d-flex justify-content-between align-items-center">
+            <button id="cart-btn" class="btn btn-outline-dark fw-bold position-relative" data-bs-toggle="modal" data-bs-target="#carrinhoModal">
+                <i class="fas fa-shopping-cart"></i> Carrinho
+                <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+            </button>
+            <button class="btn btn-success fw-bold px-4 px-md-5" onclick="abrirModalCheckout()">
+                FINALIZAR (<span id="cart-total">R$ 0,00</span>)
+            </button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="carrinhoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold">Meu Carrinho</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div id="cart-items-list"></div>
+                    <div id="checkout-form" style="display: none;" class="mt-4 border-top pt-3">
+                        <h6 class="fw-bold mb-3 text-danger"><i class="fas fa-pizza-slice"></i> Borda Recheada?</h6>
+                        <select id="cliente-borda" class="form-select mb-3" onchange="updateCartUI()">
+                            <option value="0">Sem Borda Recheada</option>
+                            <option value="5">Borda de Catupiry (+ R$ 5,00)</option>
+                            <option value="5">Borda de Cheddar (+ R$ 5,00)</option>
+                            <option value="7">Borda de Chocolate (+ R$ 7,00)</option>
+                        </select>
+                        <h6 class="fw-bold mb-3 text-danger"><i class="fas fa-truck"></i> Entrega</h6>
+                        <input type="text" id="cliente-nome" class="form-control mb-2" placeholder="Seu Nome">
+                        <textarea id="endereco-cliente" class="form-control mb-2" placeholder="Endereço Completo"></textarea>
+                        <select id="cliente-pagamento" class="form-select mb-3">
+                            <option value="Pix">Pix</option>
+                            <option value="Cartão">Cartão (Maquininha)</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer flex-column border-0">
+                    <div class="d-flex justify-content-between w-100 fw-bold fs-5 mb-3">
+                        <span>Total:</span> <span id="modal-total" class="text-success">R$ 0,00</span>
+                    </div>
+                    <button class="btn btn-success w-100 btn-lg shadow fw-bold" onclick="finalizarPedido()">ENVIAR PEDIDO AO WHATSAPP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function showSection(section) {
-            const home = document.getElementById('home-section');
-            const cardapio = document.getElementById('cardapio-section');
-            if(section === 'home') {
-                home.style.display = 'block';
-                cardapio.style.display = 'none';
+        const menu = {
+            combos: [
+                { nome: "Combo Casal", desc: "1 Pizza G + Coca 1.5L", preco: 65.0, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp5lWhcKVKp4NsmlHtaXHih20WeXgxDx3vVg&s" },
+                { nome: "Combo Família", desc: "2 Pizzas G + Refri 2L", preco: 89.9, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyPMuFnHheTzLAPnVYdp83B2zwxe8d7aS0jw&s" },
+                { nome: "Combo Individual", desc: "1 Pizza P + Lata 350ml", preco: 39.9, img: "https://cdn.neemo.com.br/uploads/promotion_group/photo/6491/Promo-Neemo_pequena_com_lata.jpg" },
+                { nome: "Super Combo", desc: "2 Pizzas G + 1 Doce + Refri 2L", preco: 135.0, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYtDkqM6d3gkWbEmVKHCSgkpTkamXPoaPqlQ&s" }
+            ],
+            salgadas: [
+                { nome: "Frango com Catupiry", desc: "Frango desfiado, mussarela e catupiry.", preco: 35.0, img: "https://edburgpizzaria.lojazap.com/_core/_uploads//2023/07/1424270723kf7b5d6e8b.webp" },
+                { nome: "Calabresa", desc: "Mussarela, calabresa e cebola.", preco: 42.0, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNjMzB44Qec0VM4BPULlPFJs6vDMw7IrfNuQ&s" },
+                { nome: "Carne de Sol", desc: "Mussarela, carne de sol e queijo coalho.", preco: 38.0, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTID4GmVjQAtUp3AJ6GzlrwYxvwDC2EPQ6saw&s" },
+                { nome: "Portuguesa", desc: "Ovo, presunto, ervilha e cebola.", preco: 45.0, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300" }
+            ],
+            doces: [
+                { nome: "Dois Amores", desc: "Chocolate preto e branco.", preco: 55.0, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqqBiXj9LAfCMYz3Db9xYAkSQA7t0A8bKzaA&s" },
+                { nome: "Chocolate com Morango", desc: "Chocolate ao leite e morangos frescos.", preco: 58.0, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDSj2XSVr3cczrgy1YzwdHBOtx3X33ijQlig&s" },
+                { nome: "Brigadeiro", desc: "Chocolate com granulado.", preco: 55.0, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9cJELWK0JVp-oJGl-xyoJWp8LogL_84zSsQ&s" },
+                { nome: "Prestigio", desc: "Chocolate e coco ralado.", preco: 50.0, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuUD5q5ClJ-UX39vdPRpQCNT1d0NCurBykWw&s" }
+            ],
+            bebidas: [
+                { nome: "Refrigerante 2L", desc: "Coca, Guaraná ou Fanta.", preco: 15.0, img: "https://saborecia.com.br/wp-content/uploads/2020/06/Design-sem-nome-1.png" },
+                { nome: "Cerveja Lata", desc: "Skol (350ml).", preco: 6.0, img: "https://redemix.vteximg.com.br/arquivos/ids/207870-500-500/7891149103102.jpg?v=638350598938700000" },
+                { nome: "Suco Natural 500ml", desc: "Laranja ou Limão.", preco: 10.0, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAurOFjU6_mJezEsDfN5463qmKLypXjTo1jQ&s" },
+                { nome: "Água Mineral", desc: "Com ou sem gás.", preco: 4.0, img: "https://drogariamoderna.vtexassets.com/arquivos/ids/251997-800-auto?v=638151218022670000" }
+            ]
+        };
+
+        let cart = [];
+
+        function verificarStatus() {
+            const agora = new Date();
+            const hora = agora.getHours();
+            const minutos = agora.getMinutes();
+            const tempoAtual = (hora * 60) + minutos;
+
+            const tempoAbertura = 17 * 60; // 17:00
+            const tempoFechamento = (22 * 60) + 40; // 22:40
+
+            const statusDiv = document.getElementById('status-loja');
+            if (tempoAtual >= tempoAbertura && tempoAtual < tempoFechamento) {
+                statusDiv.innerHTML = '<span class="badge bg-success shadow-sm">ABERTO AGORA</span>';
             } else {
-                home.style.display = 'none';
-                cardapio.style.display = 'block';
+                statusDiv.innerHTML = '<span class="badge bg-danger shadow-sm">FECHADO</span>';
             }
+        }
+
+        function renderMenu() {
+            for (let cat in menu) {
+                const container = document.getElementById(`lista-${cat}`);
+                menu[cat].forEach(item => {
+                    container.innerHTML += `
+                        <div class="col-md-6">
+                            <div class="card menu-item-card overflow-hidden h-100 shadow-sm border-0">
+                                <div class="row g-0 h-100 text-start">
+                                    <div class="col-4">
+                                        <img src="${item.img}" class="object-fit-cover h-100 w-100">
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="card-body p-3">
+                                            <h6 class="fw-bold mb-1">${item.nome}</h6>
+                                            <p class="small text-muted mb-2 lh-sm">${item.desc}</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="fw-bold text-dark">R$ ${item.preco.toFixed(2)}</span>
+                                                <button class="btn btn-sm btn-danger btn-add" onclick="addToCart('${item.nome}', ${item.preco})"><i class="fas fa-plus"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+            }
+        }
+
+        function showSection(section) {
+            document.getElementById('home-section').style.display = section === 'home' ? 'block' : 'none';
+            document.getElementById('cardapio-section').style.display = section === 'cardapio' ? 'block' : 'none';
             window.scrollTo(0,0);
         }
+
+        function addToCart(name, price) {
+            cart.push({ nome: name, preco: price });
+            const btn = document.getElementById('cart-btn');
+            btn.classList.add('cart-bounce');
+            setTimeout(() => btn.classList.remove('cart-bounce'), 300);
+            updateCartUI();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cart-items-list');
+            const cartCount = document.getElementById('cart-count');
+            const precoBorda = parseFloat(document.getElementById('cliente-borda').value) || 0;
+            cartCount.innerText = cart.length;
+            list.innerHTML = '';
+            let total = 0;
+
+            if(cart.length === 0) {
+                list.innerHTML = '<p class="text-center text-muted">Carrinho vazio</p>';
+                document.getElementById('checkout-form').style.display = 'none';
+            } else {
+                cart.forEach((item, i) => {
+                    total += item.preco;
+                    list.innerHTML += `
+                    <div class="d-flex justify-content-between align-items-center mb-2 border-bottom pb-2">
+                        <div><span class="fw-bold text-start d-block">${item.nome}</span><span class="text-success small">R$ ${item.preco.toFixed(2)}</span></div>
+                        <button class="btn btn-sm text-danger" onclick="removeItem(${i})"><i class="fas fa-trash-alt"></i></button>
+                    </div>`;
+                });
+                if(precoBorda > 0) total += precoBorda;
+                document.getElementById('checkout-form').style.display = 'block';
+            }
+            document.getElementById('cart-total').innerText = `R$ ${total.toFixed(2)}`;
+            document.getElementById('modal-total').innerText = `R$ ${total.toFixed(2)}`;
+        }
+
+        function abrirModalCheckout() {
+            if(cart.length === 0) return alert("Carrinho vazio!");
+            new bootstrap.Modal(document.getElementById('carrinhoModal')).show();
+        }
+
+        function finalizarPedido() {
+            const n = document.getElementById('cliente-nome').value;
+            const e = document.getElementById('endereco-cliente').value;
+            const p = document.getElementById('cliente-pagamento').value;
+            const b = document.getElementById('cliente-borda').options[document.getElementById('cliente-borda').selectedIndex].text;
+
+            if(!n || !e) return alert("Preencha seu nome e endereço!");
+
+            let msg = "*🍕 NOVO PEDIDO - PIZZARIA DO RATINHO*%0A%0A";
+            cart.forEach(i => msg += `✅ ${i.nome} - R$${i.preco.toFixed(2)}%0A`);
+            msg += `%0A➕ *Borda:* ${b}`;
+            msg += `%0A💰 *TOTAL:* ${document.getElementById('modal-total').innerText}%0A👤 *Cliente:* ${n}%0A📍 *Endereço:* ${e}%0A💳 *Pagamento:* ${p}`;
+            window.open(`https://wa.me/5581989174422?text=${msg}`, '_blank');
+        }
+
+        renderMenu();
     </script>
 </body>
 </html>
