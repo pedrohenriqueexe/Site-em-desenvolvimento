@@ -1,172 +1,68 @@
-/* Importação da fonte Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
-:root {
-    --vermelho-ratinho: #dc3545;
+:root { 
+    --vermelho: #dc3545; 
+    --dark: #212529; 
+    --light-bg: #f8f9fa; 
 }
 
-/* Geral */
-html {
-    scroll-behavior: smooth;
+body { 
+    font-family: 'Poppins', sans-serif; 
+    background-color: var(--light-bg); 
+    padding-bottom: 140px; 
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-    padding-bottom: 110px; /* Espaço para o carrinho fixo */
-}
+.navbar { border-bottom: 3px solid var(--vermelho); }
+.navbar-brand { cursor: pointer; }
+.logo-nav { height: 40px; margin-right: 10px; }
+.brand-destaque { color: var(--vermelho); font-weight: 800; }
 
-/* Logos e Identidade */
-.logo-nav { 
-    height: 45px; 
-    width: auto; 
-    margin-right: 10px; 
-}
-
-.logo-hero { 
-    height: 180px; 
-    width: auto; 
-    filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.4)); 
-}
-
-/* Navbar */
-.navbar-brand-logo { 
-    font-weight: 700; 
-    color: #fff !important; 
-    text-decoration: none; 
-    display: flex; 
-    align-items: center; 
-}
-
-.brand-destaque { 
-    color: var(--vermelho-ratinho); 
-}
-
-/* Hero Section (Banner Principal) */
 .hero-section {
-    height: 55vh;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
-                url('https://images.unsplash.com/photo-1574129624545-0968600c85c2?w=1200');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 40vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200');
+    background-size: cover; background-position: center;
+    display: flex; align-items: center; justify-content: center; color: white; text-align: center;
+}
+.logo-hero { height: 120px; margin-bottom: 15px; }
+
+.category-header { 
+    border-left: 5px solid var(--vermelho); 
+    padding-left: 15px; 
+    margin: 30px 0 20px; 
+    font-weight: 700; 
+    text-align: left; 
 }
 
-/* Padronização das Imagens nas Promoções (Ajuste que remove o espaço grande) */
-.img-promo {
-    height: 250px; 
-    object-fit: cover;
-    width: 100%;
+.btn-tamanho-card { 
+    cursor: pointer; 
+    transition: 0.3s; 
+    border: 2px solid transparent !important; 
 }
-
-.promo-card {
-    transition: 0.3s;
-    height: 100%;
-}
-
-.promo-card:hover { 
+.btn-tamanho-card:hover { 
+    border-color: var(--vermelho) !important; 
     transform: scale(1.02); 
 }
 
-/* Menu e Categorias */
-.menu-item-card { 
-    border-radius: 12px; 
-    transition: 0.3s; 
+.nav-pills .nav-link.active { background-color: var(--vermelho); }
+.nav-link { color: var(--dark); font-weight: 600; }
+
+.footer-pizzaria { border-top: 3px solid var(--vermelho); }
+.logo-footer { height: 50px; border-radius: 8px; }
+.tiny { font-size: 0.8rem !important; }
+
+.fixed-bottom { 
+    background: white; 
+    border-top: 3px solid var(--vermelho); 
+    z-index: 1050; 
 }
 
-.menu-item-card:hover { 
-    transform: translateY(-3px); 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important; 
+.btn-mini { padding: 0.25rem 0.5rem; font-size: 0.75rem; }
+
+#btn-voltar-home {
+    position: fixed; 
+    top: 80px; 
+    left: 20px; 
+    z-index: 999;
+    border-radius: 50px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.object-fit-cover { 
-    object-fit: cover; 
-}
-
-.category-header { 
-    border-left: 5px solid var(--vermelho-ratinho); 
-    padding-left: 15px; 
-    margin-bottom: 25px; 
-    font-weight: 700; 
-    scroll-margin-top: 130px; 
-}
-
-.sub-nav { 
-    top: 56px; 
-    z-index: 1020; 
-    background: rgba(255, 255, 255, 0.85) !important; 
-    backdrop-filter: blur(10px); 
-}
-
-.no-scrollbar::-webkit-scrollbar { 
-    display: none; 
-}
-
-/* --- RODAPÉ (FOOTER) CORRIGIDO --- */
-.footer-pizzaria { 
-    margin-top: 50px; 
-    border-top: 3px solid var(--vermelho-ratinho); 
-    background-color: #212529 !important; /* Força o fundo escuro */
-}
-
-/* Garante que todos os textos do rodapé fiquem brancos */
-.footer-pizzaria p, 
-.footer-pizzaria h5, 
-.footer-pizzaria .tiny,
-.footer-pizzaria span {
-    color: #ffffff !important;
-    opacity: 1 !important;
-}
-
-/* Mantém os títulos pequenos em vermelho */
-.footer-pizzaria h6.text-danger {
-    color: var(--vermelho-ratinho) !important;
-    font-weight: 700;
-}
-
-.logo-footer { 
-    height: 60px; 
-    width: auto; 
-    border-radius: 6px; 
-}
-
-.tiny { 
-    font-size: 0.8rem !important; 
-}
-
-.social-links a { 
-    transition: 0.3s; 
-    display: inline-block; 
-}
-
-.social-links a:hover { 
-    color: var(--vermelho-ratinho) !important; 
-    transform: translateY(-2px); 
-}
-
-/* Linha divisória mais clara no fundo escuro */
-.footer-pizzaria hr {
-    border-color: rgba(255, 255, 255, 0.2) !important;
-    opacity: 1;
-}
-
-/* Animações e Botões */
-@keyframes bounce { 
-    0%, 100% { transform: scale(1); } 
-    50% { transform: scale(1.15); } 
-}
-
-.cart-bounce { 
-    animation: bounce 0.3s ease; 
-}
-
-.btn-add { 
-    border-radius: 8px; 
-    width: 35px; 
-    height: 35px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-}
+.aviso-checkout { font-size: 0.75rem; border-radius: 8px; }
